@@ -47,7 +47,7 @@ def get_difficulty_level(level):
         if 8 <= len(word)
         word = random.choice(wordlist)
         return get_difficulty_level()
-        print(f'The mystery word is{len(word)} characters long.')
+        print(f'The Mystery word is{len(word)} letters long.')
     
         - Word will be chosen by random from within their parameters
         - if input is easy then function pulls word with 4-6 characters

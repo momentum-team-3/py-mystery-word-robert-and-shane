@@ -21,6 +21,23 @@ def validate_level():
             raise ValueError("Input must be 1, 2, 3")
 
 
+#function to grab a word, by random, depending on the level the user chose as well
+def get_difficulty_level(level): 
+    if level == 1 :
+        for word in wordlist
+        if 4 <= len(word) <= 6
+        word = random.choice(wordlist)
+    elif level == 2 :
+        for word in wordlist
+        if 6 <= len(word) <= 8
+        word = random.choice(wordlist)
+    elif level == 3 :
+        for word in wordlist
+        if 8 <= len(word)
+        word = random.choice(wordlist)
+        return get_difficulty_level()
+        print(f'The Mystery word is{len(word)} letters long.')
+
 #function to check if guess has been previous guessed
 def check_previous_guesses(guess):
     if guess in previousguesses:
