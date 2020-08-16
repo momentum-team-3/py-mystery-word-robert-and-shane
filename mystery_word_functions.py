@@ -1,6 +1,6 @@
 """functions to be imported and used in mystery_word.py"""
 # imports
-
+import random
 from string import ascii_lowercase
 
 #function to read file and return list of words
@@ -23,32 +23,36 @@ def validate_level():
 
 
 #function to grab a word, by random, depending on the level the user chose as well
-def get_difficulty_level(level: int,) -> str: 
-    get_word_list()
-    if level == 1 :
-        for word in wordlist:
-            if 4 <= len(word) <= 6:
-                word = random.choice(wordlist)
-            elif level == 2:
-                if 6 <= len(word) <= 8:
-                    word = random.choice(wordlist)
-            elif level == 3:
-                if 8 <= len(word):
-                    word = random.choice(wordlist)
-        return word
-        print(f'The Mystery word is{len(word)} letters long.')
+def get_difficulty_level(level: int, wordlist: list) -> str: 
+    if level == 1:
+        easy_wordlist = [word for word in wordlist if 4 <= len(word) <= 6]
+        mystery_word = random.choice(easy_wordlist)
+        return mystery_word
+    elif level == 2:
+            normal_wordlist = [word for word in wordlist if 6 <= len(word) <= 8]
+            mystery_word = random.choice(normal_wordlist)
+            return mystery_word
+    elif level == 3:
+            hard_wordlist = [word for word in wordlist if 8 <= len(word)]
+            mystery_word = random.choice(hard_wordlist)
+            return mystery_word
+    #print(f'The Mystery word is{len(mystery_word)} letters long.')
 
 
 #function to place spaces where the letter should be
-def show_blanks_or_letters():
-    output = " "
-    for letter in word:
-        output =+ (" _ ")
-    print(output)
+def show_blanks_or_letters(mystery_word: str) -> str:
+    outputlist = []
+    for letter in mystery_word:
+        if letter in previousguesses:
+            outputlist.append(letter)
+        else:
+            outputlist.append('_')
+    display_string= "".join(outputlist)
+    return display_string
 
-#function to take in user input
-"""def User_guess(guess):
-    if letter in mystery_word
+"""#function to take in user input
+def User_guess(guess):
+    if guess in mystery_word
         pass
     elif letter not in mystery_word:
         print("That letter is not in the Mystery Word, Try Again!")
@@ -64,3 +68,15 @@ def check_previous_guesses(guess):
     else:
         previousguesses.append(guess)
         return guess
+
+
+def get_player_guess():
+    guess = input('Guess one letter').lower()
+    if guess not in ascii_lowercase:
+        raise ValueError("Input must be a single alphabetic character")
+    elif len(guess) != 1:
+        raise ValueError("Input must be a single alphabetic character")
+    else:
+        check_previous_guesses(guess)
+        if guess in mysteryword:
+            return #idk yet
