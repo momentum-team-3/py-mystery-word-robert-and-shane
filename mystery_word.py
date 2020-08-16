@@ -165,20 +165,31 @@ TO DO: Figure out where (what state) the "previous guess list" should live
 
 # Game Code
 # Imports
-Import random
-from mystery_word_functions import get_word_list, validate_level
+import random
+from mystery_word_functions import get_word_list, validate_level, get_difficulty_level
 
 def run_mystery_word (file):
     previousguesses = []
-    pass
+    
+    get_word_list(file)
+    validate_level()
+    get_difficulty_level(level)
 
 
 if __name__ == "__main__":
-    import sys
+    import argparse
+    from pathlib import Path
 
-    file = sys.argv[1]
-    status, output_string = run_mystery_word(file)
-    print(output_string)
-    exit(status)
+    parser = argparse.ArgumentParser(
+        description='Play Mystery Word')
+    parser.add_argument('file', help='file to read')
+    args = parser.parse_args()
+
+    file = Path(args.file)
+    if file.is_file():
+        run_mystery_word(file)
+    else:
+        print(f"{file} does not exist!")
+        exit(1)
 
 
