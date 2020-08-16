@@ -38,6 +38,25 @@ def get_difficulty_level(level):
         return get_difficulty_level()
         print(f'The Mystery word is{len(word)} letters long.')
 
+
+#function to place spaces where the letter should be
+def show_blanks_or_letters():
+    output = " "
+    for letter in word
+    output =+ (" _ ")
+    print(output)
+
+#function to take in user input
+def User_guess("guess"):
+    if letter in mystery_word
+        pass
+    elif letter not in mystery_word:
+        print("That letter is not in the Mystery Word, Try Again!")
+        guessesRemaining -= 1
+        pass
+
+
+
 #function to check if guess has been previous guessed
 def check_previous_guesses(guess):
     if guess in previousguesses:
