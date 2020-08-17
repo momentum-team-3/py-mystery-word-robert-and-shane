@@ -36,7 +36,6 @@ def get_difficulty_level(level: int, wordlist: list) -> str:
             hard_wordlist = [word for word in wordlist if 8 <= len(word)]
             mystery_word = random.choice(hard_wordlist)
             return mystery_word
-    #print(f'The Mystery word is{len(mystery_word)} letters long.')
 
 
 # helper function to produce the displayed mytstery word with _ if letter not guessed
@@ -49,7 +48,6 @@ def show_blanks_or_letters(mystery_word: str, previousguesses: list) -> str:
             outputlist.append('_')
     display_string = "".join(outputlist)
     return display_string
-    print(display_string)
 
 
 
