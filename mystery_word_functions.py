@@ -56,7 +56,7 @@ def guess_count(guess: str, mystery_word: list) -> int:
     guessesRemaining = 8
     if guess in mystery_word:
         return guessesRemaining
-    elif letter not in mystery_word:
+    elif guess not in mystery_word:
         print("That letter is not in the Mystery Word, Try Again!")
         guessesRemaining -= 1
         return guessesRemaining 
