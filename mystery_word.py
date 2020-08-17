@@ -165,15 +165,16 @@ TO DO: Figure out where (what state) the "previous guess list" should live
 
 # Game Code
 # Imports
-from mystery_word_functions import get_word_list, validate_level, get_difficulty_level, show_blanks_or_letters
+from mystery_word_functions import get_word_list, validate_level, get_difficulty_level, gameplay_loop
 
 def run_mystery_word (file):
-    previousguesses = []
     
     words = get_word_list(file)
     level = validate_level()
     mysteryword = get_difficulty_level(level, words)
     print(mysteryword)
+    gamedisplay = gameplay_loop(mysteryword)
+    print(gamedisplay)
 
 
 if __name__ == "__main__":

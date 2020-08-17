@@ -13,7 +13,7 @@ def get_word_list(file: str) -> list:
 
 
 #function to validate player input about level and return level or error
-def validate_level():
+def validate_level() -> int:
     while True:
         level = int(input('Choose a Difficulty (1 = Easy, 2 = Normal, 3 = Hard): '))
         if level > 0 and level <= 3:
@@ -39,44 +39,64 @@ def get_difficulty_level(level: int, wordlist: list) -> str:
     #print(f'The Mystery word is{len(mystery_word)} letters long.')
 
 
-#function to place spaces where the letter should be
-def show_blanks_or_letters(mystery_word: str) -> str:
+# helper function to produce the displayed mytstery word with _ if letter not guessed
+def show_blanks_or_letters(mystery_word: str, previousguesses: list) -> str:
     outputlist = []
     for letter in mystery_word:
         if letter in previousguesses:
             outputlist.append(letter)
         else:
             outputlist.append('_')
-    display_string= "".join(outputlist)
+    display_string = "".join(outputlist)
     return display_string
+    print(display_string)
 
-"""#function to take in user input
-def User_guess(guess):
-    if guess in mystery_word
-        pass
+
+
+#function to take in user input
+def guess_count(guess: str, mystery_word: list) -> int:
+    guessesRemaining = 8
+    if guess in mystery_word:
+        return guessesRemaining
     elif letter not in mystery_word:
         print("That letter is not in the Mystery Word, Try Again!")
         guessesRemaining -= 1
-        pass 
-"""
+        return guessesRemaining 
+                
 
 
-#function to check if guess has been previous guessed
-def check_previous_guesses(guess):
+# helper function to check if guess has been previous guessed
+def check_previous_guesses(guess: str, previousguesses: list) -> str:
     if guess in previousguesses:
         raise ValueError("This letter has already been guessed")
     else:
         previousguesses.append(guess)
         return guess
 
-
-def get_player_guess():
-    guess = input('Guess one letter').lower()
+# helper function to get the players guess
+def get_player_guess(mystery_word: str, previousguesses: list) -> str:
+    guess = input('Guess one letter   ').lower()
     if guess not in ascii_lowercase:
         raise ValueError("Input must be a single alphabetic character")
     elif len(guess) != 1:
         raise ValueError("Input must be a single alphabetic character")
     else:
-        check_previous_guesses(guess)
-        if guess in mysteryword:
-            return #idk yet
+        check_previous_guesses(guess, previousguesses)
+        if guess in mystery_word:
+            return guess
+
+# Looping to handle guessing
+def gameplay_loop(mystery_word: str):
+    previousguesses = []
+    print(f"The mystery word is {len(mystery_word)} letters")
+    gameplay = False
+    while gameplay == False:
+        guess = get_player_guess(mystery_word, previousguesses)
+        count_display = guess_count(guess, mystery_word)
+        word_display = show_blanks_or_letters(mystery_word, previousguesses)
+        print(f"You have {count_display} guesses left!")
+        print(f"{word_display}")
+        if mystery_word == word_display:
+            gameplay = True
+            return "You Win!!!"
+    
