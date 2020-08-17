@@ -26,7 +26,7 @@ hard_level = [
 guess_list = []
 
 def get_level_difficulty():
-    level = input('Please select difficult (e - Easy, n - Normal, h - Hard): ')
+    level = input('Please select a level (e - Easy, n - Normal, h - Hard): ')
     if level == 'e':
         word = random.choice(easy_level)
     elif level == 'n':
