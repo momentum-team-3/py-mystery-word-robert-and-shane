@@ -15,11 +15,14 @@ def get_word_list(file: str) -> list:
 #function to validate player input about level and return level or error
 def validate_level() -> int:
     while True:
-        level = int(input('Choose a Difficulty (1 = Easy, 2 = Normal, 3 = Hard): '))
-        if level > 0 and level <= 3:
-            return level
-        else:
-            raise ValueError("Input must be 1, 2, 3")
+        try:
+            level = int(input('Choose a Difficulty (1 = Easy, 2 = Normal, 3 = Hard): '))
+            if level > 0 and level <= 3:
+                return level
+            else:
+                print("Input must be 1, 2, 3")
+        except ValueError:
+                print("")
 
 
 #function to grab a word, by random, depending on the level the user chose as well
