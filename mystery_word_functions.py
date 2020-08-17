@@ -62,17 +62,17 @@ def guess_count(guess: str, mystery_word: list) -> int:
     elif guess not in mystery_word:
         print("That letter is not in the Mystery Word, Try Again!")
         guessesRemaining -= 1
-        return guessesRemaining 
+    return guessesRemaining 
                 
 
 
 # helper function to check if guess has been previous guessed
-def check_previous_guesses(guess: str, previousguesses: list) -> str:
+"""def check_previous_guesses(guess: str, previousguesses: list) -> str:
     if guess in previousguesses:
-        raise ValueError("This letter has already been guessed")
+        print("This letter has already been guessed")
     else:
         previousguesses.append(guess)
-        return guess
+        return guess""""
 
 # helper function to get the players guess
 def get_player_guess(mystery_word: str, previousguesses: list) -> str:
@@ -81,10 +81,10 @@ def get_player_guess(mystery_word: str, previousguesses: list) -> str:
         raise ValueError("Input must be a single alphabetic character")
     elif len(guess) != 1:
         raise ValueError("Input must be a single alphabetic character")
-    else:
-        check_previous_guesses(guess, previousguesses)
-        if guess in mystery_word:
-            return guess
+    elif guess in previousguesses:
+        print("This letter has already been guessed")
+    else: 
+        return guess
 
 # Looping to handle guessing
 def gameplay_loop(mystery_word: str):
